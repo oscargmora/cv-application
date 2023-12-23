@@ -1,4 +1,3 @@
-import './App.css'
 import Personal from './components/personal/Personal'
 import Education from './components/education/Education'
 import Work from './components/work/Work'
