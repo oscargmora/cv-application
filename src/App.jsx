@@ -1,20 +1,10 @@
-import Personal from './components/personal/Personal'
-import Education from './components/education/Education'
-import Work from './components/work/Work'
-import Leadership from './components/leadership/Leadership'
-import Skills from './components/skills/Skills'
-import Accomplishments from './components/accomplishments/Accomplishments'
+import PersonalEditor from "./components/Personal"
 
 function App() {
   return (
     <>
       <div>
-        <Personal />
-        <Education />
-        <Work />
-        <Leadership />
-        <Skills />
-        <Accomplishments />
+        <PersonalEditor />
       </div>
     </>
   )
