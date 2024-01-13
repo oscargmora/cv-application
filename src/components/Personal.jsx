@@ -13,11 +13,10 @@ Input.propTypes = {
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
-    name: PropTypes.string,
     type: PropTypes.string,
 };
 
-function PersonalEditor() {
+function Personal() {
     const [form, setForm] = useState({name: 'Oscar Mora', address: '1823 Tamarind Ln', city: 'Coconut Creek', state: 'FL', zipCode: '33063', phoneNumber: '754-715-2802', email: 'oscgmora@gmail.com'});
 
     function handleChange(e) {
@@ -30,7 +29,7 @@ function PersonalEditor() {
     }
 
     return (
-        <>
+        <div className="personal">
         {
             map(form, (val, key) => (
                 <p key={key}>{`${startCase(key)}: ${val}`}</p>
@@ -43,8 +42,8 @@ function PersonalEditor() {
         <Input label='Zip Code' id='zip-code' handleChange={handleChange} />
         <Input label='Phone Number' id='phone-number' type='tel' handleChange={handleChange} />
         <Input label='Email' id='email' type='email' handleChange={handleChange} />
-        </>
+        </div>
     )
 }
 
-export default PersonalEditor;
+export default Personal;

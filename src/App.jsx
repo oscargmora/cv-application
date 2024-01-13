@@ -1,10 +1,12 @@
-import PersonalEditor from "./components/Personal"
+import Personal from "./components/Personal";
+import Education from "./components/Education";
 
 function App() {
   return (
     <>
       <div>
-        <PersonalEditor />
+        <Personal />
+        <Education />
       </div>
     </>
   )
