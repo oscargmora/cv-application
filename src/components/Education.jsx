@@ -45,7 +45,7 @@ function Education() {
     ])
 
     const handleChange = () => {
-        setEducations(prevEducations => [...prevEducations, {}]);
+        setEducations(prevEducations => [...prevEducations, { school: 'University of Florida', schoolMajor: 'Liberal Sciences School of Economics', graduationDate: 'April 2019', degree: 'Bachelor of Arts in Economics', city: 'Gainesville, FL', GPA: '3.54 Cum Laude' }]);
     }
 
     const handleSectionChange = (index, field, value) => {
