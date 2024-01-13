@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import { startCase } from "lodash";
 
-const Input = ({label, id, handleChange, type, }) => (
+const Input = ({label, id, handleChange, type}) => (
     <>
         <input placeholder={label} label={label} id={id} name={id} type={type || 'text'} onChange={handleChange} />
     </>
