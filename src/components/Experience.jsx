@@ -31,17 +31,17 @@ function JobDetailSection({ details, handleJobDetailSection }) {
 
     return (
         <div className="job-details">
-            {details.map((_val, index) => (
-                <p key={index}>{`• ${jobDetails[index]}`}</p>
-            ))}
             {details.map((val, index) => (
-                <Input
-                    key={index}
-                    className="job-detail-input"
-                    label={val}
-                    id={`jobDetail-${index}`}
-                    handleChange={(e) => handleInputChange(index, e.target.value)}
-                />
+                <>
+                    <p key={index}>{`• ${jobDetails[index]}`}</p>
+                    <Input
+                        key={index}
+                        className="job-detail-input"
+                        label={val}
+                        id={`jobDetail-${index}`}
+                        handleChange={(e) => handleInputChange(index, e.target.value)}
+                    />
+                </>
             ))}
         </div>
     );
