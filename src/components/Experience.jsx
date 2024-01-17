@@ -32,16 +32,15 @@ function JobDetailSection({ details, handleJobDetailSection }) {
     return (
         <div className="job-details">
             {details.map((val, index) => (
-                <>
-                    <p key={index}>{`• ${jobDetails[index]}`}</p>
+                <div key={`job-detail-${index}`}>
+                    <p>{`• ${jobDetails[index]}`}</p>
                     <Input
-                        key={index}
                         className="job-detail-input"
                         label={val}
                         id={`jobDetail-${index}`}
                         handleChange={(e) => handleInputChange(index, e.target.value)}
                     />
-                </>
+                </div>
             ))}
         </div>
     );
@@ -67,7 +66,7 @@ function ExperienceSection({ experience, handleChange }) {
         <div>
             {
                 map(experience, (val, key) => (
-                    <p key={key}>{`${startCase(key)}: ${val}`}</p>
+                    <p key={`experience-${key}`}>{`${startCase(key)}: ${val}`}</p>
                 ))
             }
             <JobDetailSection details={details} handleJobDetailSection={handleJobDetailSection} />
@@ -113,7 +112,7 @@ function Experience() {
         <div className="experience">
             {
                 experiences.map((experience, index) => (
-                    <ExperienceSection key={index} experience={experience} handleChange={(e) =>  handleSectionChange(index, e.target.name, e.target.value)} />
+                    <ExperienceSection key={`experience-section-${index}`} experience={experience} handleChange={(e) =>  handleSectionChange(index, e.target.name, e.target.value)} />
                 ))
             }
             <button onClick={handleChange}>Add Experience</button>

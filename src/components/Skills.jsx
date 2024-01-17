@@ -1,7 +1,5 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
-import { startCase } from "lodash";
 
 const Input = ({label, id, handleChange, type}) => (
     <>
@@ -17,44 +15,44 @@ Input.propTypes = {
 }
 
 function Skills() {
-    const [skills, setSkills] = useState(['HTML', 'JavaScript']);
+    const [skills, setSkills] = useState([
+        { id: '1', skill: 'HTML' },
+        { id: '2', skill: 'JavaScript' },
+        { id: '3', skill: 'CSS' }
+    ]);
 
-    const handleChange = (index, e) => {
-        setSkills(prevSkill => {
-            const newSkill = [...prevSkill];
-            newSkill[index] = e.target.value
-            return newSkill;
-        })
+    const handleChange = (id, e) => {
+        setSkills(prevSkills => {
+            return prevSkills.map(skill => 
+                skill.id === id ? { ...skill, skill: e.target.value } : skill
+            );
+        });
     }
     
     const addSkill = () => {
-        setSkills(prevSkill => [...prevSkill, ''])
+        setSkills(prevSkills => [...prevSkills, { id: Date.now().toString(), skill: '' }]);
     }
 
-    const deleteSkill = (index) => {
-        setSkills(prevSkill => {
-            const oldSkill = [...prevSkill];
-            oldSkill.splice(index, 1);
-            return oldSkill
-        })
+    const deleteSkill = (id) => {
+        setSkills(prevSkills => prevSkills.filter(skill => skill.id !== id));
     }
 
     return (
         <div className="skills">
-            {skills.map((val, index) => (
-                <>
-                    <p>{val}</p>
-                    <button onClick={(e) => deleteSkill(index, e)}>Delete Skill</button>
-                </>
+            {skills.map(({ id, skill }) => (
+                <div key={`skill-${id}`}>
+                    <p>{skill}</p>
+                    <button onClick={() => deleteSkill(id)}>Delete Skill</button>
+                </div>
             ))}
-            {skills.map((val, index) => (
-                <>
-                    <Input label='Skill' id={val} handleChange={(e) => handleChange(index, e)} />
-                </>
+            {skills.map(({ id }) => (
+                <div key={`input-${id}`}>
+                    <Input label='Skill' id={id} handleChange={(e) => handleChange(id, e)} />
+                </div>
             ))}
             <button onClick={addSkill}>Add New Skill</button>
         </div>
     )
 }
 
-export default Skills
+export default Skills;
