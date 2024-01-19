@@ -22,9 +22,9 @@ function Accomplishments() {
     ])
 
     const handleChange = (id, e) => {
-        setAccomplishments(prevSkills => {
-            return prevSkills.map(skill => 
-                skill.id === id ? { ...skill, skill: e.target.value } : skill
+        setAccomplishments(prevAccomplishments => {
+            return prevAccomplishments.map(accomplishment => 
+                accomplishment.id === id ? { ...accomplishment, accomplishment: e.target.value } : accomplishment
             );
         });
     }
@@ -32,12 +32,19 @@ function Accomplishments() {
     const addAccomplishments = () => {
         setAccomplishments(prevState => {
             const newState = [...prevState];
-            console.log(newState);
+            const newId = Date.now().toString();
+            newState.push({id: newId, accomplishment: ''});
+            return newState;
         })
     }
 
-    const deleteAccomplishment = () => {
-        console.log(accomplishments)
+    const deleteAccomplishment = (e) => {
+        setAccomplishments(prevState => {
+            const newState = [...prevState];
+            const id = (e.target.getAttribute('data-key'));
+            const alteredState = newState.filter(accomplishment => id !== accomplishment.id);
+            return alteredState;
+        })
     }
 
     return (
@@ -45,7 +52,7 @@ function Accomplishments() {
             {accomplishments.map(({ id, accomplishment }) => (
                 <div key={`accomplishment-${id}`}>
                     <p>{accomplishment}</p>
-                    <button onClick={deleteAccomplishment}>Delete Accomplishment</button>
+                    <button data-key={id} onClick={(e) => deleteAccomplishment(e)}>Delete Accomplishment</button>
                 </div>
             ))}
             {accomplishments.map(({ id }) => (
@@ -53,6 +60,7 @@ function Accomplishments() {
                     <Input label='Accomplishment' id={id} handleChange={(e) => handleChange(id, e)} />
                 </div>
             ))}
+            <button onClick={addAccomplishments}>Add Accomplishment</button>
         </div>
     )
 }
