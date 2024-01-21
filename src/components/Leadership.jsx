@@ -11,12 +11,33 @@ const Input = ({label, id, handleChange, type}) => (
 Input.propTypes = {
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
     type: PropTypes.string
 }
 
+function LeadershipDetails({details}) {
+    const [detailP, setDetailsP] = useState(["Co-led a basketball tournament event at the school to raise funds for our organization's big event.", 'Coordinated placement of 15+ team members to run a tent at a local cancer awareness event to raise funds for the research of breast cancer.', 'Promotion to orientation leader during 2018 to coach students in what classes and organizations we offered.']);
+
+    function detailChange(e, index) {
+        setDetailsP(prevDetails => {
+            const newDetails = [...prevDetails];
+            newDetails[index] = e.target.value;
+            return newDetails;
+        })
+    }
+
+    return (
+        details.map((detail, index) => (
+            <div key={`leadership-details-${index}`}>
+                <p>• {detailP[index]}</p>
+                <Input label={detail} id='leadershipDetails' handleChange={(e) => detailChange(e, index)}/>
+            </div>
+        ))
+    )
+}
+
 function LeadershipSection({leadership, handleChange}) {
-    const [details, setDetails] = useState(['Leadership Details', 'Leadership Details', 'Leadership Details']);
+    const [details] = useState(['Leadership Details', 'Leadership Details', 'Leadership Details']);
 
     return (
         <div className="leadership-details">
@@ -25,6 +46,7 @@ function LeadershipSection({leadership, handleChange}) {
                     <p key={key}>{val}</p>
                 ))
             }
+            <LeadershipDetails details={details} />
             <Input label="Location"  id="location" handleChange={handleChange} />
             <Input label="Start Date"  id="startDate" handleChange={handleChange} />
             <Input label="End Date"  id="endDate" handleChange={handleChange} />
