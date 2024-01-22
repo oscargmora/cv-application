@@ -1,99 +1,117 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import Input from './InputFactory';
 import map from 'lodash/map';
+import { startCase } from "lodash";
 
-const Input = ({label, id, handleChange, type}) => (
-    <>
-        <input placeholder={label} label={label} id={id} name={id} onChange={handleChange} type={type || 'text'} />
-    </>
-)
+function LeadershipDetail() {
+    const [detail, setDetail] = useState([
+        {id: `detail ${Date.now().toString()}`, detail: 'Leadership Detail'},
+    ]);
 
-Input.propTypes = {
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func,
-    type: PropTypes.string
-}
-
-function LeadershipDetails({details}) {
-    const [detailP, setDetailsP] = useState(["Co-led a basketball tournament event at the school to raise funds for our organization's big event.", 'Coordinated placement of 15+ team members to run a tent at a local cancer awareness event to raise funds for the research of breast cancer.', 'Promotion to orientation leader during 2018 to coach students in what classes and organizations we offered.']);
-
-    function detailChange(e, index) {
-        setDetailsP(prevDetails => {
-            const newDetails = [...prevDetails];
-            newDetails[index] = e.target.value;
-            return newDetails;
+    const handleChange = (e) => {
+        setDetail(prevDetail => {
+            return prevDetail.map(detail => 
+                detail.id === e.target.id ? {...detail, detail: e.target.value} : detail
+            )
         })
     }
 
+    const deleteDetail = (id) => {
+        setDetail(prevDetail => prevDetail.filter(detail => detail.id !== id));
+    }
+
+    const addDetail = () => {
+        setDetail(prevDetail => {
+            const newDetail = [...prevDetail];
+            const newAddition = {id: `detail ${Date.now().toString()}`, detail: 'Leadership Detail'};
+            newDetail.push(newAddition);
+            return newDetail;
+        })
+    }
+    
     return (
-        details.map((detail, index) => (
-            <div key={`leadership-details-${index}`}>
-                <p>• {detailP[index]}</p>
-                <Input label={detail} id='leadershipDetails' handleChange={(e) => detailChange(e, index)}/>
+        <div className="Leadership-detail">
+            <div className="leadership-detail-elements">
+                {
+                    detail.map((detail) => (
+                        <div key={`detail-element-${detail.id}`}>
+                            <p>• {detail.detail}</p>
+                            <button onClick={() => deleteDetail(detail.id)}>Delete Leadership Detail</button>
+                        </div>
+                    ))
+                }
+                {
+                    detail.map((detail) => (
+                        <div key={`detail-element-${detail.id}`}>
+                            <Input label={detail.detail} id={detail.id} handleChange={handleChange} />
+                        </div>
+                    ))
+                }
             </div>
-        ))
-    )
-}
-
-function LeadershipSection({leadership, handleChange}) {
-    const [details] = useState(['Leadership Details', 'Leadership Details', 'Leadership Details']);
-
-    return (
-        <div className="leadership-details">
-            {
-                map(leadership, (val, key) => (
-                    <p key={key}>{val}</p>
-                ))
-            }
-            <LeadershipDetails details={details} />
-            <Input label="Location"  id="location" handleChange={handleChange} />
-            <Input label="Start Date"  id="startDate" handleChange={handleChange} />
-            <Input label="End Date"  id="endDate" handleChange={handleChange} />
-            <Input label="Title"  id="title" handleChange={handleChange} />
-            <Input label="City"  id="city" handleChange={handleChange} />
-            <Input label="Description"  id="description" handleChange={handleChange} />
+            <button onClick={addDetail}>Add Leadership Detail</button>
         </div>
     )
 }
 
-LeadershipSection.propTypes = {
-    leadership: PropTypes.object.isRequired,
-    handleChange: PropTypes.func.isRequired
-}
-
-function Leadership() {
-    const [leadership, setLeadership] = useState([
-        {location: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate:'Jul 2018', title: 'Orientation Leader', city: 'Coconut Creek, FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'}
-    ])
-
-    const handleChange = (e, index) => {
+function Leadership() {    
+    const [Leadership, setLeadership] = useState(
+        [
+            {organization: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate: 'Jul 2018', title: 'Orientation Leader', city: 'Coconut Creek', state: 'FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'}
+        ]
+    )
+    
+    function handleChange(e, index) {
         setLeadership(prevLeadership => {
             const newLeadership = [...prevLeadership];
-            newLeadership[index][e.target.id] = e.target.value;
+            newLeadership[index][e.target.className] = e.target.value;
             return newLeadership;
         })
     }
 
-    const addLeadershipPosition = () => {
+    function deleteLeadership(index) {
         setLeadership(prevLeadership => {
             const newLeadership = [...prevLeadership];
-            const newLeadershipPosition = {location: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate:'Jul 2018', title: 'Orientation Leader', city: 'Coconut Creek, FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'};
-            newLeadership.push(newLeadershipPosition);
+            newLeadership.splice(index, 1);
             return newLeadership;
         })
     }
 
+    function addLeadership() {
+        setLeadership(prevLeadership => {
+            const newLeadership = [...prevLeadership];
+            const addedLeadership = {organization: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate: 'Jul 2018', title: 'Orientation Leader', city: 'Coconut Creek', state: 'FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'};
+            newLeadership.push(addedLeadership);
+            return newLeadership;
+        })
+    }
+    
     return (
-        <div className="leadership">
+        <div className="Leadership">
             {
-                leadership.map((leadership, index) => (
-                    <LeadershipSection key={`leadership-section-${index}`} leadership={leadership} handleChange={(e) => handleChange(e, index)} />
+                Leadership.map((company, index) => (
+                    <div key={index} className="company">
+                        <div className={'company-elements'}>
+                            {
+                                map(company, (val, key) => (
+                                    <p key={key}>{val}</p>
+                                ))
+                            }
+                        </div>
+                        <LeadershipDetail />
+                        <div className={'company-inputs'}>
+                            {
+                                map(company, (val, key) => (
+                                    <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'Leadership-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                ))
+                            }
+                            <button onClick={() => deleteLeadership(index)}>Delete Leadership</button>
+                        </div>
+                    </div>
                 ))
             }
-            <button onClick={addLeadershipPosition}>Add Leadership Position</button>
+            <button onClick={addLeadership}>Add Leadership</button>
         </div>
     )
 }
 
-export default Leadership;
+export default Leadership

@@ -1,72 +1,65 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import Input from "./InputFactory";
 import map from 'lodash/map';
 import { startCase } from "lodash";
 
-const Input = ({label, id, handleChange, type}) => (
-    <>
-        <input placeholder={label} label={label} id={id} name={id} type={type || 'text'} onChange={handleChange} />
-    </>
-)
-
-Input.propTypes = {
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    type: PropTypes.string,
-}
-
-function EducationSection({ education, handleChange }) {
-    return (
-        <div className="education-section">
-            {
-                map(education, (val, key) => (
-                    <p key={key}>{`${startCase(key)}: ${val}`}</p>
-                ))
-            }
-            <Input label='School' id='school' handleChange={handleChange} />
-            <Input label='School Major' id='school-major' handleChange={handleChange} />
-            <Input label='Graduation Date' id='date' handleChange={handleChange} />
-            <Input label='Degree' id='degree' handleChange={handleChange} />
-            <Input label='City' id='city' handleChange={handleChange} />
-            <Input label='GPA' id='gpa' handleChange={handleChange} />
-        </div>
-    )
-}
-
-EducationSection.propTypes = {
-    education: PropTypes.object.isRequired,
-    handleChange: PropTypes.func.isRequired,
-}
-
 function Education() {
-    const [educations, setEducations] = useState([
-        { school: 'University of Florida', schoolMajor: 'Liberal Sciences School of Economics', graduationDate: 'April 2019', degree: 'Bachelor of Arts in Economics', city: 'Gainesville, FL', GPA: '3.54 Cum Laude' }
-    ])
+    const [education, setEducation] = useState(
+        [
+            {university: 'University of Florida', school: 'Liberal Sciences School of Economics', graduationDate: 'April 2022', degree: 'Bachelor of Arts in Economics', city: 'Gainesville', state: 'FL', GPA: '3.54 Cum Laude'},
+            {university: 'College Academy', school: 'Broward College', graduationDate: 'June 2019', degree: 'Associate of Arts', city: 'Coconut Creek', state: 'FL', GPA: '3.72 Magna Cum Laude'}
+        ]
+    )
 
-    const handleChange = () => {
-        setEducations(prevEducations => [...prevEducations, { school: 'University of Florida', schoolMajor: 'Liberal Sciences School of Economics', graduationDate: 'April 2019', degree: 'Bachelor of Arts in Economics', city: 'Gainesville, FL', GPA: '3.54 Cum Laude' }]);
+    function handleChange(e, index) {
+        setEducation(prevEducation => {
+            const newEducation = [...prevEducation];
+            newEducation[index][e.target.className] = e.target.value;
+            return newEducation;
+        })
     }
 
-    const handleSectionChange = (index, field, value) => {
-        setEducations(prevEducations => {
-            const newEducations = [...prevEducations];
-            newEducations[index] = {
-                ...newEducations[index],
-                [field]: value
-            };
-            return newEducations;
-        });
+    function deleteEducation(index) {
+        setEducation(prevEducation => {
+            const newEducation = [...prevEducation];
+            newEducation.splice(index, 1);
+            return newEducation;
+        })
+    }
+
+    function addEducation() {
+        setEducation(prevEducation => {
+            const newEducation = [...prevEducation];
+            const addedEducation = {university: 'College Academy', school: 'Broward College', graduationDate: 'June 2019', degree: 'Associate of Arts', city: 'Coconut Creek', state: 'FL', GPA: '3.72 Magna Cum Laude'};
+            newEducation.push(addedEducation);
+            return newEducation;
+        })
     }
 
     return (
         <div className="education">
-            {educations.map((education, index) => (
-                <EducationSection key={index} education={education} handleChange={(e) => handleSectionChange(index, e.target.name, e.target.value)} />
-            ))}
-            <button onClick={handleChange}>Add Education</button>
+            {
+                education.map((school, index) => (
+                    <div key={`school-${index}`} id={`school-${index}`} className="school">
+                        <div key={`${school}-element`} className="school-elements">
+                            {
+                                map(school, (val, key) => (
+                                    <p key={`school-element-${key}`}>{val}</p>
+                                ))
+                            }
+                            {
+                                map(school, (val, key) => (
+                                    <Input key={`school-input-${key}`} label={startCase(key)} className={key} id={'education-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                ))
+                            }
+                            <button onClick={() => deleteEducation(index)}>Delete Education</button>
+                        </div>
+                    </div>
+                ))
+            }
+            <button onClick={addEducation}>Add Education</button>
         </div>
-    );
+    )
 }
 
-export default Education;
+export default Education

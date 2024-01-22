@@ -1,66 +1,54 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
-
-const Input = ({label, id, handleChange, type}) => (
-    <>
-        <input placeholder={label} label={label} name={id} id={id} onChange={handleChange} type={type || 'text'} />
-    </>
-)
-
-Input.propTypes = {
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    type: PropTypes.string
-}
+import Input from "./InputFactory";
 
 function Accomplishments() {
     const [accomplishments, setAccomplishments] = useState([
-        {id: '5', accomplishment: 'Kaizen Award'},
-        {id: '6', accomplishment: "President's Award"},
-        {id: '7', accomplishment: 'Drummer for Farewell to Arms'}
-    ])
+            {id: `detail-${Date.now().toString()}`, accomplishment: 'Accomplishment'},
+    ]);
 
-    const handleChange = (id, e) => {
+    const handleChange = (e) => {
         setAccomplishments(prevAccomplishments => {
-            return prevAccomplishments.map(accomplishment => 
-                accomplishment.id === id ? { ...accomplishment, accomplishment: e.target.value } : accomplishment
-            );
-        });
-    }
-
-    const addAccomplishments = () => {
-        setAccomplishments(prevState => {
-            const newState = [...prevState];
-            const newId = Date.now().toString();
-            newState.push({id: newId, accomplishment: ''});
-            return newState;
+            return prevAccomplishments.map(accomplishment =>
+                accomplishment.id === e.target.id ? {...accomplishment, accomplishment: e.target.value}: accomplishment
+            )
         })
     }
 
-    const deleteAccomplishment = (e) => {
-        setAccomplishments(prevState => {
-            const newState = [...prevState];
-            const id = (e.target.getAttribute('data-key'));
-            const alteredState = newState.filter(accomplishment => id !== accomplishment.id);
-            return alteredState;
+    const deleteAccomplishment = (id) => {
+        setAccomplishments(prevAccomplishments => prevAccomplishments.filter(accomplishment => accomplishment.id !== id));
+    }
+
+    const addAccomplishment = () => {
+        setAccomplishments(prevAccomplishments => {
+            const newAccomplishments = [...prevAccomplishments];
+            const newAccomplishment = {id: `detail-${Date.now().toString()}`, accomplishment: 'Accomplishment'};
+            newAccomplishments.push(newAccomplishment);
+            return newAccomplishments;
         })
     }
 
     return (
         <div className="accomplishments">
-            {accomplishments.map(({ id, accomplishment }) => (
-                <div key={`accomplishment-${id}`}>
-                    <p>{accomplishment}</p>
-                    <button data-key={id} onClick={(e) => deleteAccomplishment(e)}>Delete Accomplishment</button>
-                </div>
-            ))}
-            {accomplishments.map(({ id }) => (
-                <div key={`accomplishment-input-${id}`}>
-                    <Input label='Accomplishment' id={id} handleChange={(e) => handleChange(id, e)} />
-                </div>
-            ))}
-            <button onClick={addAccomplishments}>Add Accomplishment</button>
+            <div className="accomplishments-elements">
+                {
+                    accomplishments.map((accomplishment) => (
+                        <div key={`accomplishments-element-${accomplishment.id}`}>
+                            <p>{accomplishment.accomplishment}</p>
+                            <button onClick={() => deleteAccomplishment(accomplishment.id)}>Delete Accomplishment</button>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className="accomplishments-inputs">
+                {
+                    accomplishments.map((accomplishment) => (
+                        <div key={`accomplishments-input-${accomplishment.id}`}>
+                            <Input label={accomplishment.accomplishment} id={accomplishment.id} handleChange={(e) => handleChange(e)} />
+                        </div>
+                    ))
+                }
+            </div>
+            <button onClick={addAccomplishment}>Add Accomplishment</button>
         </div>
     )
 }

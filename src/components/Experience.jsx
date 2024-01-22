@@ -1,121 +1,119 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import Input from './InputFactory';
 import map from 'lodash/map';
 import { startCase } from "lodash";
 
-const Input = ({label, id, handleChange, type}) => (
-    <>
-        <input placeholder={label} label={label} id={id} name={id} onChange={handleChange} type={type || 'text'} />
-    </>
-)
-
-Input.propTypes = {
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func,
-    handleJobDetailSection: PropTypes.func,
-    type: PropTypes.string,
-}
-
-function JobDetailSection({ details, handleJobDetailSection }) {
-    const [jobDetails, setJobDetails] = useState(['Head Accountant for project “Beachside”, managing all aspects of financial responsibilities, and leading a team of other accountants towards the completion of the job, whilst working closely with the owner.', 'Head accountant for Construction Specialties of America, a materials and framing subcontractor for Seawood. I managed all AP and AR for this company, working closely with project managers, and the GCs for the job.', 'Commandeered project start-ups by calculating projected estimates and creating spreadsheets to aid in day-to-day operations of daily tasks, such as balance sheets, change orders, check releases, etc.']);
-
-    const handleInputChange = (index, value) => {
-        setJobDetails(prevDetails => {
-            const newDetails = [...prevDetails];
-            newDetails[index] = value;
-            return newDetails;
-        });
-        handleJobDetailSection && handleJobDetailSection(index, value);
-    };
-
-    return (
-        <div className="job-details">
-            {details.map((val, index) => (
-                <div key={`job-detail-${index}`}>
-                    <p>{`• ${jobDetails[index]}`}</p>
-                    <Input
-                        className="job-detail-input"
-                        label={val}
-                        id={`jobDetail-${index}`}
-                        handleChange={(e) => handleInputChange(index, e.target.value)}
-                    />
-                </div>
-            ))}
-        </div>
+function ExperienceDetail() {
+    const [detail, setDetail] = useState(
+        [
+            {id: `detail-experience-${Date.now().toString()}`, detail: 'Job Detail'},
+        ]
     );
-}
 
-JobDetailSection.propTypes = {
-    details: PropTypes.array.isRequired,
-    handleJobDetailSection: PropTypes.func
-}
+    const handleChange = (e) => {
+        setDetail(prevDetail => {
+            return prevDetail.map(detail =>
+                detail.id === e.target.id ? {...detail, detail: e.target.value} : detail
+            )
+        })
+    }
 
-function ExperienceSection({ experience, handleChange }) {
-    const [details, setDetails] = useState(['Job Detail', 'Job Detail', 'Job Detail']);
+    const deleteDetail = (id) => {
+        setDetail(prevDetail => prevDetail.filter((detail) => detail.id !== id))
+    }
 
-    const handleJobDetailSection = (index, value) => {
-        setDetails(prevDetails => {
-            const newDetails = [...prevDetails];
-            newDetails[index] = value;
-            return newDetails;
-        });
-    };
-    
+    const addDetail = () => {
+        setDetail(prevDetail => {
+            const newDetail = [...prevDetail];
+            const newAddition = {id: `detail-experience-${Date.now().toString()}`, detail: 'Job Detail'};
+            newDetail.push(newAddition);
+            return newDetail;
+        })
+    }
+
     return (
-        <div>
-            {
-                map(experience, (val, key) => (
-                    <p key={`experience-${key}`}>{`${startCase(key)}: ${val}`}</p>
-                ))
-            }
-            <JobDetailSection details={details} handleJobDetailSection={handleJobDetailSection} />
-            <Input label="Company" id="company" handleChange={handleChange} />
-            <Input label="Start Date" id="startDate" handleChange={handleChange} />
-            <Input label="End Date" id="endDate" handleChange={handleChange} />
-            <Input label="Job Title" id="jobTitle" handleChange={handleChange} />
-            <Input label="City" id="city" handleChange={handleChange} />
-            <Input label="Reference" id="reference" handleChange={handleChange} />
-            <Input label='Reference Email' id='referenceEmail' type='email' handleChange={handleChange} />
-            <Input label="Reference Phone Number" id="referencePhoneNumber" type='tel' handleChange={handleChange} />
-            <Input label="Job Summary" id="jobSummary" handleChange={handleChange} />
+        <div className="experience-detail">
+            <div className="experience-detail-elements">
+                {
+                    detail.map((detail) => (
+                        <div key={`experience-detail-elements-${detail.id}`}>   
+                            <p>• {detail.detail}</p>
+                            <button onClick={() => deleteDetail(detail.id)}>Delete Job Detail</button>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className="experience-detail-inputs">
+                {
+                    detail.map((detail) => (
+                        <div key={`experience-detail-inputs-${detail.id}`}>   
+                            <Input label={detail.detail} id={detail.id} handleChange={(e) => handleChange(e)} />
+                        </div>
+                    ))
+                }
+            </div>
+            <button onClick={addDetail}>Add Job Detail</button>
         </div>
     )
 }
 
-ExperienceSection.propTypes = {
-    experience: PropTypes.object.isRequired,
-    handleChange: PropTypes.func.isRequired,
-}
-
-function Experience() {
-    const [experiences, setExperiences] = useState([
-        {company: 'Seawood Builders', startDate: 'June 2021', endDate: 'Current', jobTitle: 'Accountant', city: 'Deerfield Beach', reference: 'Brigitte Gomez', referenceEmail: 'bgomez@seawoodbuilders.com', referencePhoneNumber: '954-914-2716', jobSummary: 'Worked together with a team of accountants, managing costs and handling accounts when dealing with our construction projects and owner/subcontractor work.'}
-    ])
-
-    const handleChange = () => {
-        setExperiences(prevState => [...prevState, {company: 'Seawood Builders', startDate: 'June 2021', endDate: 'Current', jobTitle: 'Accountant', city: 'Deerfield Beach', reference: 'Brigitte Gomez', referencePhoneNumber: '954-914-2716', jobSummary: 'Worked together with a team of accountants, managing costs and handling accounts when dealing with our construction projects and owner/subcontractor work.'}])
+function Experience() {    
+    const [experience, setExperience] = useState(
+        [
+            {company: 'Seawood Builders II, LLC', startDate: 'June 2021', endDate: 'Current', jobTitle: 'Accountant', city: 'Deerfield Beach', state: 'FL', referenceName: 'Brigitte Gomez', referenceNumber: '954-914-2716', description: 'Worked together with a team of accountants, managing costs and handling accounts when dealing with our construction projects and owner/subcontractor work.'},
+        ]
+    )
+    
+    function handleChange(e, index) {
+        setExperience(prevExperience => {
+            const newExperience = [...prevExperience];
+            newExperience[index][e.target.className] = e.target.value;
+            return newExperience;
+        })
     }
 
-    const handleSectionChange = (index, name, value) => {
-        setExperiences(prevState => {
-            const newExperiences = [...prevState];
-            newExperiences[index] = {
-                ...newExperiences[index],
-                [name]: value
-            }
-            return newExperiences
-        });
+    function deleteExperience(index) {
+        setExperience(prevExperience => {
+            const newExperience = [...prevExperience];
+            newExperience.splice(index, 1);
+            return newExperience;
+        })
     }
 
+    function addExperience() {
+        setExperience(prevExperience => {
+            const newExperience = [...prevExperience];
+            const addedExperience = {company: 'Ross, Inc.', startDate: 'September 2019', endDate: 'January 2021', jobTitle: 'Sales Associate', city: 'Gainesville', state: 'FL', referenceName: 'Daniel Kane', referenceNumber: '727-452-2450', description: 'Supported multiple stages of the retailing process to increase customer satisfaction, reduce loss of items through shoplifting, and organize clothes and accessories, resulting in our store having the most sales out of any other in the area.'};
+            newExperience.push(addedExperience);
+            return newExperience;
+        })
+    }
+    
     return (
         <div className="experience">
             {
-                experiences.map((experience, index) => (
-                    <ExperienceSection key={`experience-section-${index}`} experience={experience} handleChange={(e) =>  handleSectionChange(index, e.target.name, e.target.value)} />
+                experience.map((company, index) => (
+                    <div key={index} className="company">
+                        <div className={'company-elements'}>
+                            {
+                                map(company, (val, key) => (
+                                    <p key={key}>{val}</p>
+                                ))
+                            }
+                        </div>
+                        <ExperienceDetail />
+                        <div className={'company-inputs'}>
+                            {
+                                map(company, (val, key) => (
+                                    <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'experience-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                ))
+                            }
+                            <button onClick={() => deleteExperience(index)}>Delete Experience</button>
+                        </div>
+                    </div>
                 ))
             }
-            <button onClick={handleChange}>Add Experience</button>
+            <button onClick={addExperience}>Add Experience</button>
         </div>
     )
 }

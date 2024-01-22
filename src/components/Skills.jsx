@@ -1,58 +1,54 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
-
-const Input = ({label, id, handleChange, type}) => (
-    <>
-        <input placeholder={label} label={label} id={id} name={id} onChange={handleChange} type={type || 'text'} />
-    </>
-)
-
-Input.propTypes = {
-    label: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    type: PropTypes.string
-}
+import Input from "./InputFactory";
 
 function Skills() {
     const [skills, setSkills] = useState([
-        { id: '1', skill: 'HTML' },
-        { id: '2', skill: 'JavaScript' },
-        { id: '3', skill: 'CSS' }
+            {id: `skill-${Date.now().toString()}`, skill: 'Skill'},
     ]);
 
-    const handleChange = (id, e) => {
+    const handleChange = (e) => {
         setSkills(prevSkills => {
             return prevSkills.map(skill => 
-                skill.id === id ? { ...skill, skill: e.target.value } : skill
-            );
-        });
-    }
-    
-    const addSkill = () => {
-        setSkills(prevSkills => [...prevSkills, { id: Date.now().toString(), skill: '' }]);
+                skill.id === e.target.id ? {...skill, skill: e.target.value} : skill
+            )
+        })
     }
 
     const deleteSkill = (id) => {
-        setSkills(prevSkills => prevSkills.filter(skill => skill.id !== id));
+        setSkills(prevSkills => {
+            return prevSkills.filter((skill) => skill.id !== id)
+        })
+    }
+
+    const addSkill = () => {
+        setSkills(prevSkills => {
+            const newSkills = [...prevSkills];
+            const newSkill = {id: `skill-${Date.now().toString()}`, skill: 'Skill'};
+            newSkills.push(newSkill);
+            return newSkills;
+        })
     }
 
     return (
-        <div className="skills">
-            {skills.map(({ id, skill }) => (
-                <div key={`skill-${id}`}>
-                    <p>{skill}</p>
-                    <button onClick={() => deleteSkill(id)}>Delete Skill</button>
-                </div>
-            ))}
-            {skills.map(({ id }) => (
-                <div key={`input-${id}`}>
-                    <Input label='Skill' id={id} handleChange={(e) => handleChange(id, e)} />
-                </div>
-            ))}
-            <button onClick={addSkill}>Add New Skill</button>
+        <div className="skills-">
+            {
+                skills.map((skill) => (
+                    <div key={`skill-element-${skill.id}`}>
+                        <p>{skill.skill}</p>
+                        <button onClick={() => deleteSkill(skill.id)}>Delete Skill</button>
+                    </div>
+                ))
+            }
+            {
+                skills.map((skill) => (
+                    <div key={`skill-input-${skill.id}`}>
+                        <Input label={skill.skill} id={skill.id} handleChange={(e) => handleChange(e)} />
+                    </div>
+                ))
+            }
+            <button onClick={addSkill}>Add Skill</button>
         </div>
     )
 }
 
-export default Skills;
+export default Skills
