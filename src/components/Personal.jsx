@@ -21,20 +21,23 @@ function Personal() {
                 {
                     map(personal, (val, key) => (
                         <div key={key}>
-                            <p>{val}</p>
+                            <p className="personal-element">{val}</p>
                         </div>
                     ))
                 }
             </div>
-            <div className="personal-inputs">
-                <Input label='First Name' id="firstName" autoComplete='given-name' handleChange={(e) => handleChange(e)} />
-                <Input label='Last Name' id="lastName" autoComplete='family-name' handleChange={(e) => handleChange(e)} />
-                <Input label='Address' id="address" autoComplete='street-address' handleChange={(e) => handleChange(e)} />
-                <Input label='City' id="city" handleChange={(e) => handleChange(e)} />
-                <Input label='State' id="state" handleChange={(e) => handleChange(e)} />
-                <Input label='Zip Code' id="zipCode" autoComplete='postal-code' handleChange={(e) => handleChange(e)} />
-                <Input label='Phone Number' id="phoneNumber" type='tel' autoComplete='tel' handleChange={(e) => handleChange(e)} />
-                <Input label='Email' id="email" autoComplete='email' type='email'  handleChange={(e) => handleChange(e)} />
+            <div className="personal-details">
+                <h2 id="personal-details-input-header">Personal Details</h2>
+                <div className="personal-inputs">
+                    <Input label='First Name' id="firstName" autoComplete='given-name' handleChange={(e) => handleChange(e)} />
+                    <Input label='Last Name' id="lastName" autoComplete='family-name' handleChange={(e) => handleChange(e)} />
+                    <Input label='Address' id="address" autoComplete='street-address' handleChange={(e) => handleChange(e)} />
+                    <Input label='City' id="city" handleChange={(e) => handleChange(e)} />
+                    <Input label='State' id="state" handleChange={(e) => handleChange(e)} />
+                    <Input label='Zip Code' id="zipCode" autoComplete='postal-code' handleChange={(e) => handleChange(e)} />
+                    <Input label='Phone Number' id="phoneNumber" type='tel' autoComplete='tel' handleChange={(e) => handleChange(e)} />
+                    <Input label='Email' id="email" autoComplete='email' type='email'  handleChange={(e) => handleChange(e)} />
+                </div>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ import Accomplishments from "./components/Accomplishments";
 function App() {
   return (
     <>
-      <div>
+      <div id="full-page">
         <Personal />
         <Education />
         <Experience />

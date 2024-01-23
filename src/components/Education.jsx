@@ -47,12 +47,17 @@ function Education() {
                                     <p key={`school-element-${key}`}>{val}</p>
                                 ))
                             }
-                            {
-                                map(school, (val, key) => (
-                                    <Input key={`school-input-${key}`} label={startCase(key)} className={key} id={'education-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
-                                ))
-                            }
-                            <button onClick={() => deleteEducation(index)}>Delete Education</button>
+                        </div>
+                        <div className="school-input-card">
+                            <h2 id="education-header">Education</h2>
+                            <div className="school-inputs">
+                                {
+                                    map(school, (val, key) => (
+                                        <Input key={`school-input-${key}`} label={startCase(key)} className={key} id={'education-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                    ))
+                                }
+                            </div>
+                            <button className="delete-button" onClick={() => deleteEducation(index)}>Delete</button>
                         </div>
                     </div>
                 ))

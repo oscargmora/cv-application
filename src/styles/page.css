@@ -1,0 +1,15 @@
+html {
+    font-family: sans-serif;
+    background-color: #eff0f4;
+}
+
+input {
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8em;
+}
+
+input:invalid {
+    border: red 2px solid;
+}
