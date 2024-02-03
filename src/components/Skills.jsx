@@ -30,22 +30,27 @@ function Skills() {
     }
 
     return (
-        <div className="skills-">
-            {
-                skills.map((skill) => (
-                    <div key={`skill-element-${skill.id}`}>
-                        <p>{skill.skill}</p>
-                        <button onClick={() => deleteSkill(skill.id)}>Delete Skill</button>
-                    </div>
-                ))
-            }
-            {
-                skills.map((skill) => (
-                    <div key={`skill-input-${skill.id}`}>
-                        <Input label={skill.skill} id={skill.id} handleChange={(e) => handleChange(e)} />
-                    </div>
-                ))
-            }
+        <div className="skills">
+            <div className="skill-elements">
+                {
+                    skills.map((skill) => (
+                        <div key={`skill-element-${skill.id}`}>
+                            <p>{skill.skill}</p>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className="skill-input-card">
+                <h2>Skills</h2>
+                {
+                    skills.map((skill) => (
+                        <div className="skill-input" key={`skill-input-${skill.id}`}>
+                            <Input label={skill.skill} id={skill.id} handleChange={(e) => handleChange(e)} />
+                            <button className="delete-button" onClick={() => deleteSkill(skill.id)}>Delete Skill</button>
+                        </div>
+                    ))
+                }
+            </div>
             <button onClick={addSkill}>Add Skill</button>
         </div>
     )

@@ -96,15 +96,18 @@ function Leadership() {
                                     <p key={key}>{val}</p>
                                 ))
                             }
+                            <LeadershipDetail />
                         </div>
-                        <LeadershipDetail />
-                        <div className={'company-inputs'}>
-                            {
-                                map(company, (val, key) => (
-                                    <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'Leadership-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
-                                ))
-                            }
-                            <button onClick={() => deleteLeadership(index)}>Delete Leadership</button>
+                        <div className={'company-input-card'}>
+                            <h2>Leadership</h2>
+                            <div className="company-inputs">
+                                {
+                                    map(company, (val, key) => (
+                                        <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'Leadership-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                    ))
+                                }
+                            </div>
+                            <button className="delete-button"  onClick={() => deleteLeadership(index)}>Delete Leadership</button>
                         </div>
                     </div>
                 ))

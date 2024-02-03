@@ -34,16 +34,17 @@ function Accomplishments() {
                     accomplishments.map((accomplishment) => (
                         <div key={`accomplishments-element-${accomplishment.id}`}>
                             <p>{accomplishment.accomplishment}</p>
-                            <button onClick={() => deleteAccomplishment(accomplishment.id)}>Delete Accomplishment</button>
                         </div>
                     ))
                 }
             </div>
-            <div className="accomplishments-inputs">
+            <div className="accomplishments-input-card">
+                <h2>Accomplishments</h2>
                 {
                     accomplishments.map((accomplishment) => (
-                        <div key={`accomplishments-input-${accomplishment.id}`}>
+                        <div className="accomplishment-input" key={`accomplishments-input-${accomplishment.id}`}>
                             <Input label={accomplishment.accomplishment} id={accomplishment.id} handleChange={(e) => handleChange(e)} />
+                            <button className="delete-button" onClick={() => deleteAccomplishment(accomplishment.id)}>Delete Accomplishment</button>
                         </div>
                     ))
                 }

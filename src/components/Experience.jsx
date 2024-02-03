@@ -100,15 +100,19 @@ function Experience() {
                                     <p key={key}>{val}</p>
                                 ))
                             }
+                            <ExperienceDetail />
                         </div>
-                        <ExperienceDetail />
-                        <div className={'company-inputs'}>
-                            {
-                                map(company, (val, key) => (
-                                    <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'experience-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
-                                ))
-                            }
-                            <button onClick={() => deleteExperience(index)}>Delete Experience</button>
+                        
+                        <div className={'company-input-card'}>
+                            <h2 id="experience-header">Work Experience</h2>
+                            <div className={'company-inputs'}>
+                                {
+                                    map(company, (val, key) => (
+                                        <Input key={`company-input-${key}`} label={startCase(key)} className={key} id={'experience-' + index + '-' + val} handleChange={(e) => handleChange(e, index)} />
+                                    ))
+                                }
+                            </div>
+                            <button className="delete-button" onClick={() => deleteExperience(index)}>Delete Experience</button>
                         </div>
                     </div>
                 ))

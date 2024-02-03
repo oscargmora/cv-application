@@ -1,21 +1,25 @@
-.personal {
+.company {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.personal-elements {
+.company-elements {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
 }
 
-.personal-details {
+.company-input-card {
     background-color: white;
     border-radius: 10px;
     padding: 1em;
 }
 
-.personal-inputs {
+.company-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5em;
+}
+
+.company-inputs > input:first-child {
+    grid-column: auto / span 2;
 }

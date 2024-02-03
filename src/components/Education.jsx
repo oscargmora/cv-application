@@ -57,7 +57,7 @@ function Education() {
                                     ))
                                 }
                             </div>
-                            <button className="delete-button" onClick={() => deleteEducation(index)}>Delete</button>
+                            <button className="delete-button" onClick={() => deleteEducation(index)}>Delete Education</button>
                         </div>
                     </div>
                 ))

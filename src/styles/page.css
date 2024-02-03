@@ -13,3 +13,21 @@ input {
 input:invalid {
     border: red 2px solid;
 }
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    font-size: 1.3em;
+}
+
+.delete-button {
+    margin-top: 1em;
+    background: none;
+    border: #808080 solid 1px;
+    color: #808080;
+    border-radius: 5px;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+}
