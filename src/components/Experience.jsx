@@ -38,7 +38,7 @@ function ExperienceDetail() {
                     detail.map((detail) => (
                         <div key={`experience-detail-elements-${detail.id}`}>   
                             <p>• {detail.detail}</p>
-                            <button onClick={() => deleteDetail(detail.id)}>Delete Job Detail</button>
+                            <button className="delete-button" onClick={() => deleteDetail(detail.id)}>Delete Job Detail</button>
                         </div>
                     ))
                 }
@@ -52,7 +52,7 @@ function ExperienceDetail() {
                     ))
                 }
             </div>
-            <button onClick={addDetail}>Add Job Detail</button>
+            <button className="add-button" onClick={addDetail}>Add Job Detail</button>
         </div>
     )
 }
@@ -117,7 +117,7 @@ function Experience() {
                     </div>
                 ))
             }
-            <button onClick={addExperience}>Add Experience</button>
+            <button className="add-button" onClick={addExperience}>Add Experience</button>
         </div>
     )
 }

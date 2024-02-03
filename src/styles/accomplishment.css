@@ -1,6 +1,7 @@
 .accomplishments {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 1em;
 }
 
 .accomplishments-elements {
@@ -8,8 +9,18 @@
     grid-row: 1 / 3;
 }
 
-.accomplishment-input-card {
+.accomplishments-input-card {
     background-color: white;
     border-radius: 10px;
     padding: 1em;
+}
+
+.accomplishment-input {
+    display: flex;
+    margin: 1em;
+    gap: 1em;
+}
+
+.accomplishment-input > input {
+    flex-grow: 1;
 }

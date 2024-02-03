@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./InputFactory";
+import trash from '../assets/trash-bin.png'
 
 function Skills() {
     const [skills, setSkills] = useState([
@@ -46,12 +47,14 @@ function Skills() {
                     skills.map((skill) => (
                         <div className="skill-input" key={`skill-input-${skill.id}`}>
                             <Input label={skill.skill} id={skill.id} handleChange={(e) => handleChange(e)} />
-                            <button className="delete-button" onClick={() => deleteSkill(skill.id)}>Delete Skill</button>
+                            <button className="delete-button-skill-accomplishments" onClick={() => deleteSkill(skill.id)}>
+                                <img className="delete-button-img" src={trash} alt="" />
+                            </button>
                         </div>
                     ))
                 }
             </div>
-            <button onClick={addSkill}>Add Skill</button>
+            <button className="add-button-skill-accomplishments" onClick={addSkill}>Add Skill</button>
         </div>
     )
 }

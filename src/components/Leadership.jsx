@@ -36,7 +36,7 @@ function LeadershipDetail() {
                     detail.map((detail) => (
                         <div key={`detail-element-${detail.id}`}>
                             <p>• {detail.detail}</p>
-                            <button onClick={() => deleteDetail(detail.id)}>Delete Leadership Detail</button>
+                            <button className="delete-button" onClick={() => deleteDetail(detail.id)}>Delete Leadership Detail</button>
                         </div>
                     ))
                 }
@@ -48,7 +48,7 @@ function LeadershipDetail() {
                     ))
                 }
             </div>
-            <button onClick={addDetail}>Add Leadership Detail</button>
+            <button className="add-button" onClick={addDetail}>Add Leadership Detail</button>
         </div>
     )
 }
@@ -112,7 +112,7 @@ function Leadership() {
                     </div>
                 ))
             }
-            <button onClick={addLeadership}>Add Leadership</button>
+            <button className="add-button" onClick={addLeadership}>Add Leadership</button>
         </div>
     )
 }

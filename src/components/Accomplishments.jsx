@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./InputFactory";
+import trash from '../assets/trash-bin.png'
 
 function Accomplishments() {
     const [accomplishments, setAccomplishments] = useState([
@@ -44,12 +45,14 @@ function Accomplishments() {
                     accomplishments.map((accomplishment) => (
                         <div className="accomplishment-input" key={`accomplishments-input-${accomplishment.id}`}>
                             <Input label={accomplishment.accomplishment} id={accomplishment.id} handleChange={(e) => handleChange(e)} />
-                            <button className="delete-button" onClick={() => deleteAccomplishment(accomplishment.id)}>Delete Accomplishment</button>
+                            <button className="delete-button-skill-accomplishments" onClick={() => deleteAccomplishment(accomplishment.id)}>
+                                <img className="delete-button-img" src={trash} alt="" />
+                            </button>
                         </div>
                     ))
                 }
             </div>
-            <button onClick={addAccomplishment}>Add Accomplishment</button>
+            <button className="add-button-skill-accomplishments" onClick={addAccomplishment}>Add Accomplishment</button>
         </div>
     )
 }

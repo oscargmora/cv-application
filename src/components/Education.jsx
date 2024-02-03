@@ -62,7 +62,7 @@ function Education() {
                     </div>
                 ))
             }
-            <button onClick={addEducation}>Add Education</button>
+            <button className="add-button" onClick={addEducation}>Add Education</button>
         </div>
     )
 }

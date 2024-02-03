@@ -3,6 +3,10 @@ html {
     background-color: #eff0f4;
 }
 
+#full-page > div {
+    margin: 2em;
+}
+
 input {
     background-color: #f3f4f6;
     border: none;
@@ -20,7 +24,8 @@ h2 {
     font-size: 1.3em;
 }
 
-.delete-button {
+.delete-button,
+.delete-button-skill-accomplishments {
     margin-top: 1em;
     background: none;
     border: #808080 solid 1px;
@@ -28,6 +33,34 @@ h2 {
     border-radius: 5px;
 }
 
+.delete-button-skill-accomplishments {
+    margin: 0;
+    border: none;
+}
+
 .delete-button:hover {
+    cursor: pointer;
+}
+
+.delete-button-img {
+    height: 4em;
+}
+
+.add-button,
+.add-button-skill-accomplishments {
+    margin-bottom: 1em;
+    background: none;
+    border: #808080 solid 1px;
+    color: #808080;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.add-button-skill-accomplishments {
+    width: 100%;
+}
+
+.add-button:hover,
+.add-button-skill-accomplishments:hover {
     cursor: pointer;
 }
