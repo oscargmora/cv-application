@@ -24,3 +24,9 @@
 .skill-input > input {
     flex-grow: 1;
 }
+
+.skills-title {
+    font-weight: 600;
+    text-decoration: underline;
+    margin-bottom: 0.5em;
+}

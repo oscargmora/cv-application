@@ -1,4 +1,4 @@
-.company {
+.company-div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
@@ -24,4 +24,71 @@
 
 .company-inputs > input:first-child {
     grid-column: auto / span 2;
+}
+
+.experience-title {
+    text-align: center;
+    margin-left: 9em;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* Resume Page */
+
+.company-elements {
+    display: grid;
+    grid-template-columns: 14em 1fr 1fr 2em;
+    grid-template-rows: repeat(5, 3em);
+}
+
+p.experience-company {
+    font-weight: 600;
+}
+
+p.experience-startDate {
+    grid-column: 3 / 4;
+    justify-self: end;
+    font-weight: 600;
+}
+
+p.experience-endDate {
+    grid-column: 4 / 6;
+    justify-self: end;
+    font-weight: 600;
+}
+
+p.experience-jobTitle {
+    grid-column: 1 / 2;
+    font-weight: 600;
+    font-style: italic;
+}
+
+p.experience-city {
+    grid-column: 3 / 5;
+    justify-self: end;
+}
+
+p.experience-state {
+    grid-column: 5 / 6;
+    justify-self: end;
+}
+
+p.experience-referenceName {
+    font-style: italic;
+}
+
+p.experience-referencePhoneNumber {
+    grid-column: 3 / 6;
+    justify-self: end;
+    font-style: italic;
+}
+
+p.experience-description {
+    grid-row: 4 / 5;
+    grid-column: 1 / end;
+}
+
+.experience-detail {
+    grid-row: 5 / 6;
+    grid-column: 1 / end;
 }

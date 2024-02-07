@@ -2,6 +2,9 @@ import { useState } from "react";
 import Input from './InputFactory';
 import map from 'lodash/map';
 import { startCase } from "lodash";
+import close from '../assets/close.png'
+import pen from '../assets/pen.png'
+import checkMark from '../assets/check-mark.png'
 
 function ExperienceDetail() {
     const [detail, setDetail] = useState(
@@ -31,14 +34,31 @@ function ExperienceDetail() {
         })
     }
 
+    const editDetail = (id) => {
+        const input = document.getElementById(`div-${id}`)
+        input.classList.replace('description-detail-hidden', 'description-detail')
+    }
+
+    const submitDetail = (id) => {
+        const input = document.getElementById(`div-${id}`)
+        input.classList.replace('description-detail', 'description-detail-hidden')
+    }
+
     return (
         <div className="experience-detail">
             <div className="experience-detail-elements">
                 {
                     detail.map((detail) => (
-                        <div key={`experience-detail-elements-${detail.id}`}>   
+                        <div className="detail-element-div" key={`experience-detail-elements-${detail.id}`}>
                             <p>• {detail.detail}</p>
-                            <button className="delete-button" onClick={() => deleteDetail(detail.id)}>Delete Job Detail</button>
+                            <div className="detail-buttons hidden">
+                                <button className="detail-delete-button" onClick={() => deleteDetail(detail.id)}>
+                                    <img className="detail-delete-button-img" src={close} alt="" />
+                                </button>
+                                <button className="detail-edit-button" onClick={() => editDetail(detail.id)}>
+                                    <img className="detail-edit-button-img" src={pen} alt="" />
+                                </button>
+                            </div>
                         </div>
                     ))
                 }
@@ -46,13 +66,16 @@ function ExperienceDetail() {
             <div className="experience-detail-inputs">
                 {
                     detail.map((detail) => (
-                        <div key={`experience-detail-inputs-${detail.id}`}>   
-                            <Input label={detail.detail} id={detail.id} handleChange={(e) => handleChange(e)} />
+                        <div id={`div-${detail.id}`} className='description-detail-hidden' key={`experience-detail-inputs-${detail.id}`}>
+                            <Input label={detail.detail} id={detail.id} handleChange={handleChange} />
+                            <button onClick={() => submitDetail(detail.id)} className="submit-button">
+                                <img className="detail-check-mark-button-img" src={checkMark} alt="" />
+                            </button>
                         </div>
                     ))
                 }
             </div>
-            <button className="add-button" onClick={addDetail}>Add Job Detail</button>
+            <button className="add-button hidden" onClick={addDetail}>Add Job Detail</button>
         </div>
     )
 }
@@ -60,7 +83,7 @@ function ExperienceDetail() {
 function Experience() {    
     const [experience, setExperience] = useState(
         [
-            {company: 'Seawood Builders II, LLC', startDate: 'June 2021', endDate: 'Current', jobTitle: 'Accountant', city: 'Deerfield Beach', state: 'FL', referenceName: 'Brigitte Gomez', referenceNumber: '954-914-2716', description: 'Worked together with a team of accountants, managing costs and handling accounts when dealing with our construction projects and owner/subcontractor work.'},
+            {company: 'Seawood Builders II, LLC', startDate: 'June 2021', endDate: 'Current', jobTitle: 'Accountant', city: 'Deerfield Beach', state: 'FL', referenceName: 'Brigitte Gomez', referencePhoneNumber: '954-914-2716', description: 'Worked together with a team of accountants, managing costs and handling accounts when dealing with our construction projects and owner/subcontractor work.'},
         ]
     )
     
@@ -91,19 +114,19 @@ function Experience() {
     
     return (
         <div className="experience">
+            <h1 className="experience-title">EXPERIENCE</h1>
             {
                 experience.map((company, index) => (
-                    <div key={index} className="company">
-                        <div className={'company-elements'}>
+                    <div key={index} className="company-div">
+                        <div className='company-elements resume-page'>
                             {
                                 map(company, (val, key) => (
-                                    <p key={key}>{val}</p>
+                                    <p className={`experience-${key}`} key={key}>{val}</p>
                                 ))
                             }
                             <ExperienceDetail />
                         </div>
-                        
-                        <div className={'company-input-card'}>
+                        <div className='company-input-card left-inputs'>
                             <h2 id="experience-header">Work Experience</h2>
                             <div className={'company-inputs'}>
                                 {
@@ -117,7 +140,7 @@ function Experience() {
                     </div>
                 ))
             }
-            <button className="add-button" onClick={addExperience}>Add Experience</button>
+            <button className="add-button left-inputs" onClick={addExperience}>Add Experience</button>
         </div>
     )
 }

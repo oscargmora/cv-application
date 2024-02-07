@@ -30,7 +30,8 @@ function Accomplishments() {
 
     return (
         <div className="accomplishments">
-            <div className="accomplishments-elements">
+            <div className="accomplishments-elements resume-page-final">
+                <h1 className="accomplishments-title">Accomplishments</h1>
                 {
                     accomplishments.map((accomplishment) => (
                         <div key={`accomplishments-element-${accomplishment.id}`}>
@@ -39,7 +40,7 @@ function Accomplishments() {
                     ))
                 }
             </div>
-            <div className="accomplishments-input-card">
+            <div className="accomplishments-input-card left-inputs">
                 <h2>Accomplishments</h2>
                 {
                     accomplishments.map((accomplishment) => (
@@ -52,7 +53,7 @@ function Accomplishments() {
                     ))
                 }
             </div>
-            <button className="add-button-skill-accomplishments" onClick={addAccomplishment}>Add Accomplishment</button>
+            <button className="add-button-skill-accomplishments left-inputs" onClick={addAccomplishment}>Add Accomplishment</button>
         </div>
     )
 }

@@ -2,6 +2,9 @@ import { useState } from "react";
 import Input from './InputFactory';
 import map from 'lodash/map';
 import { startCase } from "lodash";
+import close from '../assets/close.png'
+import pen from '../assets/pen.png'
+import checkMark from '../assets/check-mark.png'
 
 function LeadershipDetail() {
     const [detail, setDetail] = useState([
@@ -28,27 +31,48 @@ function LeadershipDetail() {
             return newDetail;
         })
     }
+
+    const editDetail = (id) => {
+        const input = document.getElementById(`div-${id}`)
+        input.classList.replace('description-detail-hidden', 'description-detail')
+    }
+
+    const submitDetail = (id) => {
+        const input = document.getElementById(`div-${id}`)
+        input.classList.replace('description-detail', 'description-detail-hidden')
+    }
     
     return (
-        <div className="Leadership-detail">
+        <div className="leadership-detail">
             <div className="leadership-detail-elements">
                 {
                     detail.map((detail) => (
-                        <div key={`detail-element-${detail.id}`}>
+                        <div className="detail-element-div" key={`detail-element-${detail.id}`}>
                             <p>• {detail.detail}</p>
-                            <button className="delete-button" onClick={() => deleteDetail(detail.id)}>Delete Leadership Detail</button>
+                            <div className="detail-buttons hidden">
+                                <button className="detail-delete-button" onClick={() => deleteDetail(detail.id)}>
+                                    <img className="detail-delete-button-img" src={close} alt="" />
+                                </button>
+                                <button className="detail-edit-button" onClick={() => editDetail(detail.id)}>
+                                    <img className="detail-edit-button-img" src={pen} alt="" />
+                                </button>
+                            </div>
                         </div>
                     ))
                 }
                 {
                     detail.map((detail) => (
-                        <div key={`detail-element-${detail.id}`}>
+                        <div id={`div-${detail.id}`} className='description-detail-hidden' key={`detail-element-${detail.id}`}>
                             <Input label={detail.detail} id={detail.id} handleChange={handleChange} />
+                            <button onClick={() => submitDetail(detail.id)} className="submit-button">
+                                <img className="detail-check-mark-button-img" src={checkMark} alt="" />
+                            </button>
                         </div>
                     ))
                 }
+                
             </div>
-            <button className="add-button" onClick={addDetail}>Add Leadership Detail</button>
+            <button className="add-button hidden" onClick={addDetail}>Add Leadership Detail</button>
         </div>
     )
 }
@@ -87,18 +111,19 @@ function Leadership() {
     
     return (
         <div className="Leadership">
+            <h1 className="leadership-title">LEADERSHIP</h1>
             {
                 Leadership.map((company, index) => (
-                    <div key={index} className="company">
-                        <div className={'company-elements'}>
+                    <div key={index} className="leadership-div">
+                        <div className='company-elements resume-page'>
                             {
                                 map(company, (val, key) => (
-                                    <p key={key}>{val}</p>
+                                    <p className={`leadership-${key}`} key={key}>{val}</p>
                                 ))
                             }
                             <LeadershipDetail />
                         </div>
-                        <div className={'company-input-card'}>
+                        <div className='company-input-card left-inputs'>
                             <h2>Leadership</h2>
                             <div className="company-inputs">
                                 {
@@ -112,7 +137,7 @@ function Leadership() {
                     </div>
                 ))
             }
-            <button className="add-button" onClick={addLeadership}>Add Leadership</button>
+            <button className="add-button left-inputs" onClick={addLeadership}>Add Leadership</button>
         </div>
     )
 }

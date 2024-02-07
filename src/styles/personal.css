@@ -20,3 +20,40 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.5em;
 }
+
+.personal-inputs > input:first-child {
+    grid-column: auto / span 2;
+}
+
+/* Resume Page */
+
+#personal-resume-page {
+    display: grid;
+    grid-template-columns: 1fr 8em 1.5em 3em 7em 12em;
+    grid-template-rows: 4em 1em;
+}
+
+div#fullName {
+    grid-column: 6 / 7;
+    justify-self: end;
+    align-self: end;
+}
+
+div#fullName > p {
+    font-weight: 900;
+    font-size: xx-large;
+}
+
+div#email,
+div#address {
+    justify-self: end;
+}
+
+div#zipCode {
+    justify-self: start;
+}
+
+div#city,
+div#phoneNumber {
+    justify-self: center;
+}

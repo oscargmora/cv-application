@@ -1,4 +1,4 @@
-.school {
+.school-div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
@@ -24,4 +24,49 @@
 
 .school-inputs > input:first-child {
     grid-column: auto / span 2;
+}
+
+.education-title {
+    text-align: center;
+    margin-left: 9em;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* Resume Page */
+
+.school-div > .resume-page {
+    display: grid;
+    grid-template-columns: 10em 1fr 7em 1.5em;
+    grid-template-rows: repeat(3, 2em);
+}
+
+p.university {
+    font-weight: 600;
+}
+
+p.degree {
+    font-weight: 600;
+    font-style: italic;
+}
+
+p.city {
+    justify-self: end;
+    grid-column: 3 / 4;
+}
+
+p.state {
+    justify-self: end;
+    grid-column: 4 / 5;
+}
+
+p.graduationDate {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+    justify-self: end;
+    font-weight: 600;
+}
+
+p.degree {
+    grid-column: 1 / 2;
 }

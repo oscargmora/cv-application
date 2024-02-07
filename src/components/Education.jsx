@@ -38,17 +38,18 @@ function Education() {
 
     return (
         <div className="education">
+            <h1 className="education-title">EDUCATION</h1>
             {
                 education.map((school, index) => (
-                    <div key={`school-${index}`} id={`school-${index}`} className="school">
-                        <div key={`${school}-element`} className="school-elements">
+                    <div key={`school-${index}`} id={`school-${index}`} className="school-div">
+                        <div key={`${school}-element`} className="school-elements resume-page">
                             {
                                 map(school, (val, key) => (
-                                    <p key={`school-element-${key}`}>{val}</p>
+                                    <p className={key} key={`school-element-${key}`}>{val}</p>
                                 ))
                             }
                         </div>
-                        <div className="school-input-card">
+                        <div className="school-input-card left-inputs">
                             <h2 id="education-header">Education</h2>
                             <div className="school-inputs">
                                 {
@@ -62,7 +63,7 @@ function Education() {
                     </div>
                 ))
             }
-            <button className="add-button" onClick={addEducation}>Add Education</button>
+            <button className="add-button left-inputs" onClick={addEducation}>Add Education</button>
         </div>
     )
 }

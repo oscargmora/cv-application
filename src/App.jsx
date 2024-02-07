@@ -5,6 +5,16 @@ import Leadership from "./components/Leadership";
 import Skills from "./components/Skills";
 import Accomplishments from "./components/Accomplishments";
 
+const removeInputs = () => {
+  const leftInputs = document.querySelectorAll('.left-inputs');
+  leftInputs.forEach((input) => input.classList.add('invisible'));
+}
+
+const editInputs = () => {
+  const leftInputs = document.querySelectorAll('.left-inputs');
+  leftInputs.forEach((input) => input.classList.remove('invisible'))
+}
+
 function App() {
   return (
     <>
@@ -15,6 +25,8 @@ function App() {
         <Leadership />
         <Skills />
         <Accomplishments />
+        <button onClick={removeInputs} className="complete-resume">Complete Resume</button>
+        <button onClick={editInputs} className="edit-resume">Edit Resume</button>
       </div>
     </>
   )

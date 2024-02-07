@@ -32,16 +32,17 @@ function Skills() {
 
     return (
         <div className="skills">
-            <div className="skill-elements">
-                {
-                    skills.map((skill) => (
-                        <div key={`skill-element-${skill.id}`}>
-                            <p>{skill.skill}</p>
-                        </div>
-                    ))
-                }
-            </div>
-            <div className="skill-input-card">
+                <div className="skill-elements resume-page">
+                    <h1 className="skills-title">Skills</h1>
+                    {
+                        skills.map((skill) => (
+                            <div key={`skill-element-${skill.id}`}>
+                                <p>{skill.skill}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            <div className="skill-input-card left-inputs">
                 <h2>Skills</h2>
                 {
                     skills.map((skill) => (
@@ -54,7 +55,7 @@ function Skills() {
                     ))
                 }
             </div>
-            <button className="add-button-skill-accomplishments" onClick={addSkill}>Add Skill</button>
+            <button className="add-button-skill-accomplishments left-inputs" onClick={addSkill}>Add Skill</button>
         </div>
     )
 }
