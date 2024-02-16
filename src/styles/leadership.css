@@ -26,7 +26,7 @@
     grid-column: auto / span 2;
 }
 
-h1.leadership-title {
+.leadership-title {
     text-align: center;
     margin-left: 9em;
     font-weight: 600;
@@ -57,7 +57,7 @@ p.leadership-endDate {
     font-weight: 600;
 }
 
-p.leadership-title {
+p.leadership-jobTitle {
     grid-column: 1 / 2;
     font-weight: 600;
     font-style: italic;
@@ -81,4 +81,14 @@ p.leadership-description {
 .leadership-detail {
     grid-row: 4 / 5;
     grid-column: 1 / end;
+}
+
+@media (max-width: 540px) {
+    .leadership-div > .company-elements {
+        display: block;
+    }
+
+    .leadership-div > .company-elements {
+        min-width: 11.7em;
+    }
 }

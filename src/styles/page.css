@@ -174,3 +174,11 @@ h2 {
 .invisible {
     display: none;
 }
+
+@media (max-width: 540px) {
+    h1.education-title,
+    h1.experience-title,
+    h1.leadership-title {
+        margin-left: 6.5em;
+    }
+}

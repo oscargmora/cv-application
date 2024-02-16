@@ -57,3 +57,9 @@ div#city,
 div#phoneNumber {
     justify-self: center;
 }
+
+@media (max-width: 540px) {
+    #personal-resume-page {
+        display: block;
+    }
+}

@@ -92,3 +92,10 @@ p.experience-description {
     grid-row: 5 / 6;
     grid-column: 1 / end;
 }
+
+@media (max-width: 540px) {
+    .company-div > .company-elements {
+        display: block;
+        min-width: 11.7em;
+    }
+}

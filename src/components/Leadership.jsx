@@ -103,8 +103,9 @@ function Leadership() {
     function addLeadership() {
         setLeadership(prevLeadership => {
             const newLeadership = [...prevLeadership];
-            const addedLeadership = {organization: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate: 'Jul 2018', title: 'Orientation Leader', city: 'Coconut Creek', state: 'FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'};
+            const addedLeadership = {organization: 'Student Ambassadors at Broward College', startDate: 'Sep 2017', endDate: 'Jul 2018', jobTitle: 'Orientation Leader', city: 'Coconut Creek', state: 'FL', description: 'A volunteer program that allowed students in the organization to plan and run events for the rest of the students at Broward College. Served to also show students what classes they should take as a freshman if promoted.'};
             newLeadership.push(addedLeadership);
+            console.log(newLeadership)
             return newLeadership;
         })
     }

@@ -70,3 +70,13 @@ p.graduationDate {
 p.degree {
     grid-column: 1 / 2;
 }
+
+@media (max-width: 540px) {
+    .school-div > .resume-page {
+        display: block;
+    }
+
+    .school-div > .resume-page {
+        min-width: 11.7em;
+    }
+}
