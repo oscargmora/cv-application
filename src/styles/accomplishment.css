@@ -38,5 +38,17 @@
 
     .accomplishments-elements {
         min-width: 11.6em;
+        height: 7em;
+    }
+}
+
+@media (min-width: 540.1px) and (max-width: 1200px) {
+    .accomplishments-input-card {
+        min-width: 22em;
+    }
+
+    .accomplishments-elements {
+        min-width: 11.6em;
+        height: 7em;
     }
 }

@@ -40,3 +40,14 @@
         min-width: 11.6em;
     }
 }
+
+@media (min-width: 540.1px) and (max-width: 1200px) {
+    .skill-input-card {
+        min-width: 21.3em;
+    }
+
+    .skill-elements {
+        min-width: 20em;
+        height: 7em;
+    }
+}

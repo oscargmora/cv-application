@@ -181,4 +181,30 @@ h2 {
     h1.leadership-title {
         margin-left: 6.5em;
     }
+
+    .edit-resume {
+        margin-bottom: 5em;
+    }
+
+    .complete-resume,
+    .edit-resume {
+        width: 46em;
+    }
+}
+
+@media (min-width: 540.1px) and (max-width: 1200px) {
+    h1.education-title,
+    h1.experience-title,
+    h1.leadership-title {
+        margin-left: 10.5em;
+    }
+
+    .edit-resume {
+        margin-bottom: 5em;
+    }
+
+    .complete-resume,
+    .edit-resume {
+        width: 46em;
+    }
 }
