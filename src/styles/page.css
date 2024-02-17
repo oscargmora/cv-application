@@ -23,7 +23,6 @@ html {
 }
 
 .edit-resume {
-    margin-bottom: 1em;
     background: none;
     border: #808080 solid 1px;
     color: #808080;
@@ -175,6 +174,12 @@ h2 {
     display: none;
 }
 
+.final-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 @media (max-width: 540px) {
     h1.education-title,
     h1.experience-title,
@@ -182,29 +187,8 @@ h2 {
         margin-left: 6.5em;
     }
 
-    .edit-resume {
-        margin-bottom: 5em;
-    }
-
     .complete-resume,
     .edit-resume {
-        width: 46em;
-    }
-}
-
-@media (min-width: 540.1px) and (max-width: 1200px) {
-    h1.education-title,
-    h1.experience-title,
-    h1.leadership-title {
-        margin-left: 10.5em;
-    }
-
-    .edit-resume {
-        margin-bottom: 5em;
-    }
-
-    .complete-resume,
-    .edit-resume {
-        width: 46em;
+        width: 40em;
     }
 }

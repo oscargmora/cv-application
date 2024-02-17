@@ -34,7 +34,7 @@
 }
 
 div#fullName {
-    grid-column: 6 / 7;
+    grid-column: span 6;
     justify-self: end;
     align-self: end;
 }
@@ -58,7 +58,7 @@ div#phoneNumber {
     justify-self: center;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 1200px) {
     #personal-resume-page {
         display: block;
     }

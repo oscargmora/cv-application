@@ -31,20 +31,9 @@
     margin-bottom: 0.5em;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 1200px) {
     .accomplishments-input-card {
         min-width: 21.4em;
-    }
-
-    .accomplishments-elements {
-        min-width: 11.6em;
-        height: 7em;
-    }
-}
-
-@media (min-width: 540.1px) and (max-width: 1200px) {
-    .accomplishments-input-card {
-        min-width: 22em;
     }
 
     .accomplishments-elements {

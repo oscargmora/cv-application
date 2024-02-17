@@ -25,8 +25,10 @@ function App() {
         <Leadership />
         <Skills />
         <Accomplishments />
-        <button onClick={removeInputs} className="complete-resume">Complete Resume</button>
-        <button onClick={editInputs} className="edit-resume">Edit Resume</button>
+        <div className="final-button-container">
+          <button onClick={removeInputs} className="complete-resume">Complete Resume</button>
+          <button onClick={editInputs} className="edit-resume">Edit Resume</button>
+        </div>
       </div>
     </>
   )

@@ -71,9 +71,15 @@ p.degree {
     grid-column: 1 / 2;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 1200px) {
     .school-div > .resume-page {
         display: block;
         min-width: 11.7em;
+    }
+}
+
+@media (min-width: 540.1px) and (max-width: 1200px) {
+    h1.education-title {
+        margin-left: 12em;
     }
 }

@@ -31,23 +31,12 @@
     margin-bottom: 0.5em;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 1200px) {
     .skill-input-card {
         min-width: 21.4em;
     }
 
     .skill-elements {
         min-width: 11.6em;
-    }
-}
-
-@media (min-width: 540.1px) and (max-width: 1200px) {
-    .skill-input-card {
-        min-width: 21.3em;
-    }
-
-    .skill-elements {
-        min-width: 20em;
-        height: 7em;
     }
 }
